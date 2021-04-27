@@ -5,10 +5,14 @@ const Galery = () => {
 
     const storeData = useSelector(state => state)
 
-    console.log(storeData);
-  
+    storeData?.data && console.log(storeData.data);
+
     return (
-    <h1>this is the galery</h1>
+        <section>
+            {storeData?.data &&  storeData.data.map((item)=> <div key={item.id}>
+                {item.name}
+            </div>)}
+        </section>
     );
 }
 

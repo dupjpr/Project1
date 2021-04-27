@@ -8,7 +8,6 @@ import thunk from 'redux-thunk';
 
 const store = createStore(
   mainReducer,
-  { name: 'pakman' },
   applyMiddleware(thunk)
 );
 
