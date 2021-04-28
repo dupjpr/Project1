@@ -19,7 +19,14 @@ const fetchData = () => {
     for (let i = 1; i <= 20; i++) {
       const randNum = Math.floor(Math.random() * 150) + 1;
       const link = `https://pokeapi.co/api/v2/pokemon-form/${randNum}/`;
-      links.push(link);
+      const check = links.some((item)=>{
+        return item === link;
+      })
+
+      if(!check){
+        links.push(link);
+      }
+
     }
   
     let info = [];
