@@ -1,6 +1,15 @@
 const success = (data) => ({
-    type: "Data_Set",
+    type: "DATA_SET",
     task: data
+  })
+
+  const loading = (status) => ({
+    type: "LOADING",
+    task: status
+  })
+
+  const pokeStates = () => ({
+    type: "POKE_STATES",
   })
 
 const fetchData = () => {
@@ -16,13 +25,16 @@ const fetchData = () => {
     let info = [];
   
     return dispatch => {
+      dispatch(loading(true))
       links.forEach((item) => {
         return fetch(item)
           .then(response => response.json())
           .then(data => {
             info.push(data);
-            if(info.length == 20){
+            if(info.length == 20){              
               dispatch(success(info))
+              dispatch(loading(false))
+              // dispatch(pokeStates())
             }
           })
       })
