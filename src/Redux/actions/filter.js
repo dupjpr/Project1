@@ -1,21 +1,17 @@
-const success = (data) => ({
-    type: "DATA_SET",
-    task: data
+
+  const filterAction = (value) => ({
+    type: "FILTER",
+    payload: value
   })
 
-  const loading = (status) => ({
-    type: "LOADING",
-    task: status
-  })
-
-  const pokeStates = () => ({
-    type: "POKE_STATES",
-  })
-
-const filter = () => {
+const filter = (evalVal) => {
   
+
+    console.log(evalVal);
+
     return dispatch => {
       
+      dispatch(filterAction(evalVal));
   
     } 
 }

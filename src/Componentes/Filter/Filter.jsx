@@ -1,17 +1,28 @@
 import { useSelector } from "react-redux";
 import { v4 as uuid } from 'uuid';
 
+import { useDispatch } from "react-redux";
 import { useForm } from "../../Hooks/useForm.js";
+
+import filter from '../../Redux/actions/filter.js';
+
+
+
+
+
 
 const Filter = () => {
 
     const storeData = useSelector(state => state);
+    const dispatch = useDispatch();
+
     const [values, handleInputChange, reset] = useForm({ selectOption: '' });
 
     console.log(values);
     let options = [];
 
-    storeData?.data && storeData.data.forEach((item) => {
+    storeData?.options && storeData.options.forEach((item) => {
+
         const check = options.some((type) => {
             return type === item.types[0].type.name;
         })
@@ -24,19 +35,22 @@ const Filter = () => {
 
     const filterState = () => {
         console.log('filtrando');
-        const newState = storeData.data.filter((pokemon) => {
-            return pokemon.types[0].type.name === values.selectOption;
-        })
-        console.log(newState);
+        dispatch(filter(values.selectOption));
+        reset();
+
+        // const newState = storeData.options.filter((pokemon) => {
+        //     return pokemon.types[0].type.name === values.selectOption;
+        // })
+        // console.log(newState);
     }
 
     values.selectOption && filterState()
 
     return (
         <div>
-            { storeData?.data &&
+            { storeData?.options &&
                 (<select
-                    defaultValue='choose the pokemon type'
+                    value={values.selectOption}
                     name='selectOption'
                     onChange={handleInputChange}
                 >

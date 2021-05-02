@@ -1,24 +1,26 @@
 const success = (data) => ({
     type: "DATA_SET",
-    task: data
+    payload: data
   })
 
   const loading = (status) => ({
     type: "LOADING",
-    task: status
+    payload: status
+  })
+  
+  const options = (status) => ({
+    type: "OPTIONS",
+    payload: status
   })
 
-  const pokeStates = () => ({
-    type: "POKE_STATES",
-  })
-
-const fetchData = () => {
+  const fetchData = () => {
     
     const links = [];
 
     for (let i = 1; i <= 20; i++) {
       const randNum = Math.floor(Math.random() * 150) + 1;
       const link = `https://pokeapi.co/api/v2/pokemon-form/${randNum}/`;
+      
       const check = links.some((item)=>{
         return item === link;
       })
@@ -40,8 +42,8 @@ const fetchData = () => {
             info.push(data);
             if(info.length == 20){              
               dispatch(success(info))
+              dispatch(options(info))
               dispatch(loading(false))
-              // dispatch(pokeStates())
             }
           })
       })
