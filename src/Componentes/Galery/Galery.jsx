@@ -8,7 +8,7 @@ const Galery = () => {
 
     // console.log(storeData);
 
-    // storeData?.data ? completeArra = storeData.data.map(() => <div>hola</div>) : 'nada';
+    storeData?.filterData && storeData.filterData.map((item)=> console.log(item.name));
 
     // (<div key={uuid()}>
     //     {item.name}
@@ -32,13 +32,29 @@ const Galery = () => {
         })
     }
 
+
+    const filter = () => {
+        return storeData?.filterData && storeData.filterData.map((item) => {
+
+            return (
+                <div key={uuid()}>
+                    {item.name}
+                    <img src={item.sprites.front_default} alt="pokemon" />
+                    <div>Type: {item.types[0].type.name}</div>
+
+                </div>
+            )
+
+        })
+    }
+
     return (
         <section>
             {storeData?.loading && <div>loading....</div>}
 
 
 
-            { storeData?.dataFilter ? 'filtrado' : fullData()  }
+            { storeData?.filterData ? filter() : fullData()  }
             
         </section>
     );

@@ -23,7 +23,7 @@ const mainReducer = (state, action) => {
         case 'FILTER':
             return {
                 ...state,
-                pak: state.filterInfo.filter((item) => item.name === 'ditto')
+                filterData: state.data.filter((item) => item.types[0].type.name === action.payload)
             }
 
         default:

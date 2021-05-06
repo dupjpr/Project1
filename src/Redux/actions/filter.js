@@ -11,7 +11,7 @@ const filter = (evalVal) => {
 
   return dispatch => {
 
-    dispatch(filterAction());
+    dispatch(filterAction(evalVal));
 
   }
 }
