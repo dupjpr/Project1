@@ -10,17 +10,17 @@ const Galery = () => {
 
     const completeArra = [];
 
-    console.log('storeData.data');
-    
+    // console.log(storeData.loading);
+
     // storeData?.data ? completeArra = storeData.data.map(() => <div>hola</div>) : 'nada';
-         
-         // (<div key={uuid()}>
-         //     {item.name}
-         //     <img src={item.sprites.front_default} alt="pokemon" />
-         //     <div>Type: {item.types[0].type.name}</div>
-         //     <div>version group</div>
-         // </div>)
-   
+
+    // (<div key={uuid()}>
+    //     {item.name}
+    //     <img src={item.sprites.front_default} alt="pokemon" />
+    //     <div>Type: {item.types[0].type.name}</div>
+    //     <div>version group</div>
+    // </div>)
+
 
 
     return (
@@ -28,8 +28,16 @@ const Galery = () => {
             {storeData?.loading && <div>loading....</div>}
 
             {storeData?.data && storeData.data.map((item) => {
-                console.log(item)
-                return <div>hola</div>
+
+                return (
+                    <div key={uuid()}>
+                        {item.name}
+                        <img src={item.sprites.front_default} alt="pokemon" />
+                        <div>Type: {item.types[0].type.name}</div>
+                        <div>version group</div>
+                    </div>
+                )
+
             })}
         </section>
     );
