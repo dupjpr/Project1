@@ -1,8 +1,10 @@
-import Galery from "./Componentes/Galery/Galery.jsx";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+
 import fetchData from './Redux/actions/fetchData.js';
 
+import Galery from "./Componentes/Galery/Galery.jsx";
+import Filter from './Componentes/Filter/Filter.jsx'
 
 function App() {
 
@@ -14,7 +16,7 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Filter/> */}
+      <Filter/>
       <Galery />
     </div>
   );

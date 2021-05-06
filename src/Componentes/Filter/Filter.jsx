@@ -6,22 +6,17 @@ import { useForm } from "../../Hooks/useForm.js";
 
 import filter from '../../Redux/actions/filter.js';
 
-
-
-
-
-
 const Filter = () => {
 
     const storeData = useSelector(state => state);
+
     const dispatch = useDispatch();
 
     const [values, handleInputChange, reset] = useForm({ selectOption: '' });
 
-    console.log(values);
     let options = [];
 
-    storeData?.options && storeData.options.forEach((item) => {
+    storeData?.filterInfo && storeData.filterInfo.forEach((item) => {
 
         const check = options.some((type) => {
             return type === item.types[0].type.name;
@@ -34,27 +29,21 @@ const Filter = () => {
     });
 
     const filterState = () => {
-        console.log('filtrando');
-        dispatch(filter(values.selectOption));
-        reset();
 
-        // const newState = storeData.options.filter((pokemon) => {
-        //     return pokemon.types[0].type.name === values.selectOption;
-        // })
-        // console.log(newState);
+        dispatch(filter(values.typeSelected));
+        reset()
     }
 
-    values.selectOption && filterState()
+    values.typeSelected && filterState();
 
     return (
         <div>
-            { storeData?.options &&
+            { storeData?.filterInfo &&
                 (<select
-                    value={values.selectOption}
-                    name='selectOption'
+                    name='typeSelected'
                     onChange={handleInputChange}
                 >
-                    <option value='choose the pokemon type' disabled>choose the pokemon type</option>
+                    <option>Choose an option</option>
                     {options.map((item) => (
                         <option key={uuid()} value={item}>{item}</option>
                     ))

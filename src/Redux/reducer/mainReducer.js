@@ -1,13 +1,14 @@
 const mainReducer = (state, action) => {
 
-    console.log(action);
-
     
+    console.log(state);
+
     switch (action.type) {
         case 'DATA_SET':
             return {
                 ...state,
-                data: action.payload
+                data: action.payload,
+                filterInfo: action.payload,
             }
         case 'OPTIONS':
             return {
@@ -22,7 +23,7 @@ const mainReducer = (state, action) => {
         case 'FILTER':
             return {
                 ...state,
-                data: state.data.filter((item) => item.types[0].type.name === action.payload)
+                pak: state.filterInfo.filter((item) => item.name === 'ditto')
             }
 
         default:

@@ -8,11 +8,6 @@ const loading = (status) => ({
   payload: status
 })
 
-const options = (status) => ({
-  type: "OPTIONS",
-  payload: status
-})
-
 const fetchData = () => {
 
   const links = [];
@@ -40,7 +35,7 @@ const fetchData = () => {
       .then((result) => Promise.all(result.map((r) => r.json())))
       .then((data) => {
         dispatch(success(data))
-        dispatch(options(data))
+        // dispatch(options(data))
         dispatch(loading(false))
       })
 
