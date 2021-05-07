@@ -10,11 +10,6 @@ const mainReducer = (state, action) => {
                 data: action.payload,
                 filterInfo: action.payload,
             }
-        case 'OPTIONS':
-            return {
-                ...state,
-                options: action.payload
-            }
         case 'LOADING':
             return {
                 ...state,

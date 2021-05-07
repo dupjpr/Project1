@@ -6,56 +6,38 @@ const Galery = () => {
 
     const storeData = useSelector(state => state)
 
-    // console.log(storeData);
+    const list = () => {
 
-    storeData?.filterData && storeData.filterData.map((item)=> console.log(item.name));
+        let array = [];
 
-    // (<div key={uuid()}>
-    //     {item.name}
-    //     <img src={item.sprites.front_default} alt="pokemon" />
-    //     <div>Type: {item.types[0].type.name}</div>
-    //     <div>version group</div>
-    // </div>)
+        if (storeData?.data) {
+            const newArray = storeData?.filterData ? storeData.filterData : storeData.data;
+            console.log(newArray);
+            console.log(newArray.length);
+            array = [...newArray];
+        }
+        // {array[0].types[0].type.name}
+        return (
+            <div>
+                {array.length > 15 ? <h1>pokemons</h1> : <h1>{array[0]?.types[0].type.name}</h1>}
+                {array.map((item) => {
+                    return (
+                        <div key={uuid()}>
+                            {item.name}
+                            <img src={item.sprites.front_default} alt="pokemon" />
+                            <div>Type: {item.types[0].type.name}</div>
+                        </div>
+                    )
+                })}
+            </div>
+        )
 
-    const fullData = () => {
-        return storeData?.data && storeData.data.map((item) => {
-
-            return (
-                <div key={uuid()}>
-                    {item.name}
-                    <img src={item.sprites.front_default} alt="pokemon" />
-                    <div>Type: {item.types[0].type.name}</div>
-
-                </div>
-            )
-
-        })
-    }
-
-
-    const filter = () => {
-        return storeData?.filterData && storeData.filterData.map((item) => {
-
-            return (
-                <div key={uuid()}>
-                    {item.name}
-                    <img src={item.sprites.front_default} alt="pokemon" />
-                    <div>Type: {item.types[0].type.name}</div>
-
-                </div>
-            )
-
-        })
-    }
+    };
 
     return (
         <section>
             {storeData?.loading && <div>loading....</div>}
-
-
-
-            { storeData?.filterData ? filter() : fullData()  }
-            
+            {list()}
         </section>
     );
 }

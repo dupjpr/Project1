@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { v4 as uuid } from 'uuid';
-
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "../../Hooks/useForm.js";
 
@@ -27,14 +27,11 @@ const Filter = () => {
         }
 
     });
-
-    const filterState = () => {
-
-        dispatch(filter(values.typeSelected));
+    
+    useEffect(() => {
+        values?.typeSelected && dispatch(filter(values.typeSelected))
         reset()
-    }
-
-    values.typeSelected && filterState();
+    }, [values.typeSelected])
 
     return (
         <div>
