@@ -35,9 +35,9 @@ const fetchData = () => {
       .then((result) => Promise.all(result.map((r) => r.json())))
       .then((data) => {
         dispatch(success(data))
-        // dispatch(options(data))
         dispatch(loading(false))
       })
+      .catch((error)=>{console.log(error)})
 
   }
 
